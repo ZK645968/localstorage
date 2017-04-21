@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+</head>
+<style type="text/css">
+    form {
+        width: 300px;
+        padding: 10px 0px 20px 30px;
+        height: auto;
+        border-radius: 6px;
+        border-left: 8px solid #19a049;
+        background: #eee;
+        margin: 100px auto;
+    }
+
+    #user, #pass {
+        padding: 8px;
+        outline: none;
+        background: transparent;
+        border: 1px solid #999;
+        margin-top: 5px;
+    }
+
+    #sub {
+        padding: 6px;
+        outline: none;
+        border: none;
+        background: #19a049;
+        color: #fff;
+        width: 150px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+<body>
+<form action="" onsubmit="return login();">
+    <h3>Log in</h3>
+    <input type="text" name="user" placeholder="user" id="user">
+    <input type="password" name="pass" placeholder="password" id="pass">
+    <input type="checkbox" id="remember" checked><br/><br/>
+    <input type="submit" id="sub">
+</form>
+</body>
+<script type="text/javascript">
+    var $ = function(id){
+        return document.getElementById(id);
+    };
+    window.onload = function () {
+
+        var strName = localStorage.getItem('keyName');
+        var strPass = localStorage.getItem('keyPass');
+        if (strName) {
+            $('user').value=strName;
+        }
+        if (strPass) {
+            $('pass').value=strPass;
+        }
+
+    };
+
+    function login() {
+        var strName = $('user').value;
+        var strPass = $('pass').value;
+        localStorage.setItem('keyName', strName);
+        if ($('remember').checked) {
+            localStorage.setItem('keyPass', strPass);
+        } else {
+            localStorage.removeItem('keyPass');
+        }
+    }
+</script>
+
+</html>
